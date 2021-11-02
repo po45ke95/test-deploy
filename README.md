@@ -1,1 +1,1 @@
-test-deploy
+Use this repo need to change path before exec.

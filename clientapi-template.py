@@ -1,8 +1,9 @@
 def read(file):
-    with open(file, 'r') as f:
+    with open(file,'r',encoding='utf-8') as f:
         data = f.readlines()
     return data
-v = read('/Users/jason/Documents/sensestar/sw-infra/helm/sw-api/templates/client-api/deployment.yaml')
+# v = read('/Users/jason/Documents/sensestar/sw-infra/helm/sw-api/templates/client-api/deployment.yaml') # this row is on mac env.
+v = read('C:\\Users\\Peter\\Documents\\Company\\sensestar\\sw-infra\\helm\\sw-api\\templates\\client-api\\deployment.yaml') # this row is windows env.
 t1 = []
 
 # clean row data
@@ -22,8 +23,9 @@ for x in v:
 listcount = len(t1)
 
 # write file to check
-path = '/Users/jason/Documents/test-deploy/clientapi-logs.txt'
-f = open(path, 'w')
+# path = '/Users/jason/Documents/test-deploy/clientapi-logs.txt'
+path = 'C:\\Users\\Peter\\Documents\\Company\\test-deploy\\clientapi-logs.txt' # this row is windows env.
+f = open(path,'w',encoding='utf-8')
 
 #for loop take list [1] data 
 for i in range(listcount):

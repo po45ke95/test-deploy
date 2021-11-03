@@ -1,27 +1,29 @@
-import collections
+from collections.abc import MutableMapping
 
 def read(file):
     with open(file,'r',encoding='utf-8') as f:
         data = f.readlines()
     return data
-z = read('/Users/jason/Documents/sensestar/sw-infra/helm/sw-api/values-test.yaml') # this row is on mac env.
-# v = read('C:\\Users\\Peter\\Documents\\Company\\sensestar\\sw-infra\\helm\\sw-api\\values-test.yaml') # this row is windows env.
+# z = read('/Users/jason/Documents/sensestar/sw-infra/helm/sw-api/values-test.yaml') # this row is on mac env.
+z = read('C:\\Users\\Peter\\Documents\\Company\\sensestar\\sw-infra\\helm\\sw-api\\values-test.yaml') # this row is windows env.
+print(type(z))
 # t1 = []
 
 # clane values row data
 # for x in v:
 #     t1.append(x.replace('\n', '').replace('-', '').replace(',', '').split(':'))
 
-def flatten(d, parent_key='', sep='.'):
+def flatten_dict(z: MutableMapping, parent_key: str = '', sep: str ='.') -> MutableMapping:
     items = []
-    for k, v in d.items():
+    for k, v in z.items():
         new_key = parent_key + sep + k if parent_key else k
-        if isinstance(v, collections.MutableMapping):
-            items.extend(flatten(v, new_key, sep=sep).items())
+        if isinstance(v, MutableMapping):
+            items.extend(flatten_dict(v, new_key, sep=sep).items())
         else:
             items.append((new_key, v))
     return dict(items)
-print(dict(z))
+print(flatten_dict(z))
+
 # get list len
 # listcount = len(t1)
 

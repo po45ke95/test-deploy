@@ -1,6 +1,7 @@
 # ide
 ./idea
 *.xml
+*.iml
 
 # data
 *.txt

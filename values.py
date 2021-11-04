@@ -4,8 +4,8 @@ def read(file):
     with open(file,'r',encoding='utf-8') as f:
         data = f.readlines()
     return data
-# z = read('/Users/jason/Documents/sensestar/sw-infra/helm/sw-api/values-test.yaml') # this row is on mac env.
-z = read('C:\\Users\\Peter\\Documents\\Company\\sensestar\\sw-infra\\helm\\sw-api\\values-test.yaml') # this row is windows env.
+z = read('/Users/jason/Documents/sensestar/sw-infra/helm/sw-api/values-test.yaml') # this row is on mac env.
+# z = read('C:\\Users\\Peter\\Documents\\Company\\sensestar\\sw-infra\\helm\\sw-api\\values-test.yaml') # this row is windows env.
 print(type(z))
 # t1 = []
 

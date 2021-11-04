@@ -1,6 +1,6 @@
 from collections.abc import MutableMapping
 
-d = {'a': 1,'c': {'a': 2,'b': {'x': 5,'y' : 10}},'d': [1, 2, 3]}
+d = {'a':1,'c':{'a':2,'b':{'x':5,'y':10}},'d':[1,2,3]}
 
 print(type(d))
 def flatten_dict(d: MutableMapping, parent_key: str = '', sep: str ='.') -> MutableMapping:

@@ -1,44 +1,21 @@
+import yaml
 from collections.abc import MutableMapping
+import pandas as pd
 
-def read(file):
-    with open(file,'r',encoding='utf-8') as f:
-        data = f.readlines()
+# d = {'a':1,'c':{'a':2,'b':{'x':5,'y':10}},'d':[1,2,3]}
+
+log_path = '/Users/jason/Documents/test-deploy/values_log.txt'
+f = open(log_path,'w',encoding='utf-8')
+
+def read_yaml(file):
+    with open(file,'r',encoding='utf8') as f:
+        data = yaml.safe_load(f)
     return data
-z = read('/Users/jason/Documents/sensestar/sw-infra/helm/sw-api/values-test.yaml') # this row is on mac env.
-# z = read('C:\\Users\\Peter\\Documents\\Company\\sensestar\\sw-infra\\helm\\sw-api\\values-test.yaml') # this row is windows env.
-print(type(z))
-# t1 = []
+a = read_yaml('/Users/jason/Documents/sensestar/sw-infra/helm/sw-api/values-test.yaml')
+# a = read_yaml('/Users/jason/Documents/test-deploy/123.yaml')
+def flatten_dict(a: MutableMapping, sep: str= '_') -> MutableMapping:
+    [flat_dict] = pd.json_normalize(a, sep=sep).to_dict(orient='records')
+    return flat_dict
 
-# clane values row data
-# for x in v:
-#     t1.append(x.replace('\n', '').replace('-', '').replace(',', '').split(':'))
-
-def flatten_dict(z: MutableMapping, parent_key: str = '', sep: str ='.') -> MutableMapping:
-    items = []
-    for k, v in z.items():
-        new_key = parent_key + sep + k if parent_key else k
-        if isinstance(v, MutableMapping):
-            items.extend(flatten_dict(v, new_key, sep=sep).items())
-        else:
-            items.append((new_key, v))
-    return dict(items)
-print(flatten_dict(z))
-
-# get list len
-# listcount = len(t1)
-
-# write file
-# path = '/Users/jason/Documents/test-deploy/value-logs.txt' # this row is on mac env.
-# path = 'C:\\Users\\Peter\\Documents\\Company\\test-deploy\\value-logs.txt' # this row is windows env.
-# f = open(path,'w',encoding='utf-8')
-
-# for i in range(listcount):
-#     try:
-#         if len(t1[i])>0:
-#             print((t1[i]),file=f)
-#         else:
-#             pass
-#     except IndexError:
-#         continue
-
-# f.close()
+# print(flatten_dict(a),file=f)
+print(type(flatten_dict(a)))

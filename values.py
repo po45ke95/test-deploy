@@ -23,5 +23,5 @@ def flatten_dict(a: MutableMapping, sep: str= '_') -> MutableMapping:
     [flat_dict] = pd.json_normalize(a, sep=sep).to_dict(orient='records')
     return flat_dict
 
-# print(flatten_dict(a),file=f)
-print(type(flatten_dict(a)))
+print(flatten_dict(a),file=f)
+# print(type(flatten_dict(a)))
